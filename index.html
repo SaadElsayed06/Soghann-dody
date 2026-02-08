@@ -7,30 +7,29 @@
 <style>
 body{
 margin:0;
-font-family:'Cairo',sans-serif;
+font-family: Arial, sans-serif;
 background:linear-gradient(135deg,#ff4d8d,#ff9bbd);
 color:white;
 text-align:center;
-overflow-x:hidden;
 }
 
 .page{
 display:none;
 min-height:100vh;
 padding:40px 20px;
-animation:fade 1.2s ease;
+box-sizing:border-box;
+}
+
+.page.active{
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 }
 
-.page.active{display:flex;}
-
 h1,h2{
-font-size:42px;
-margin-bottom:25px;
-animation:slide 1s ease;
+font-size:48px;
+margin-bottom:30px;
 }
 
 button{
@@ -38,152 +37,101 @@ background:white;
 color:#ff2f75;
 border:none;
 padding:18px 45px;
-font-size:26px;
+font-size:30px;
 border-radius:50px;
 margin:15px;
 cursor:pointer;
-transition:.3s;
 }
 
-button:hover{transform:scale(1.12);}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
+button:active{
+transform:scale(0.95);
 }
 
-@keyframes slide{
-from{transform:translateY(40px);opacity:0}
-to{transform:translateY(0);opacity:1}
-}
-
-/* القلوب */
-.hearts span{
-position:fixed;
-bottom:-40px;
-font-size:26px;
-animation:float 7s linear infinite;
-opacity:.85;
-}
-
-@keyframes float{
-0%{transform:translateY(0);opacity:0}
-30%{opacity:1}
-100%{transform:translateY(-120vh);opacity:0}
-}
-
-/* برواز الصورة */
-.photo-frame{
-padding:12px;
-border-radius:30px;
-background:linear-gradient(45deg,#fff,#ffd6e8,#fff);
-animation:zoomIn 1.8s ease;
-box-shadow:0 0 40px rgba(255,255,255,.5);
-margin-bottom:30px;
-}
-
-.photo-frame img{
-max-width:320px;
-border-radius:22px;
-display:block;
-}
-
-/* أنيميشن الصورة */
-@keyframes zoomIn{
-from{transform:scale(.5);opacity:0}
-to{transform:scale(1);opacity:1}
-}
-
-/* الرسالة */
 .message{
-background:rgba(255,255,255,.2);
-padding:45px;
-border-radius:35px;
-line-height:2.7;
-font-size:38px;
-white-space:pre-line;
+background:rgba(255,255,255,0.2);
+padding:40px;
+border-radius:30px;
+font-size:40px;
+line-height:2.3;
 max-width:900px;
-animation:fade 2s ease;
+white-space:pre-line;
 }
 
-.message span{
+.photo{
+border:8px solid white;
+border-radius:30px;
+padding:10px;
+margin-bottom:30px;
+animation:zoom 1.2s ease;
+}
+
+.photo img{
+width:300px;
+border-radius:20px;
 display:block;
-opacity:0;
-animation:showLine 1s forwards;
 }
 
-@keyframes showLine{
-from{opacity:0; transform:translateY(25px);}
-to{opacity:1; transform:translateY(0);}
+@keyframes zoom{
+from{transform:scale(0.6);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="music" src="love.mp3" loop></audio>
-<div class="hearts" id="hearts"></div>
-
 <!-- الصفحات -->
-<div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
-<div class="page"><h1>جاهزة لرحلة صغيرة؟ 🌸</h1><button onclick="go(2)">جاهزة</button></div>
-<div class="page"><h2>وعد مش هتزهقي؟ 😌</h2><button onclick="go(3)">أوعد</button></div>
-<div class="page"><h2>طب ركزي معايا شوية 👀</h2><button onclick="go(4)">تمام</button></div>
-<div class="page"><h2>في سؤال مهم أوي…</h2><button onclick="go(5)">قولي</button></div>
-<div class="page"><h2>انتي بتحبي سعد؟ ❤️</h2><button onclick="go(6)">هااا 😳</button></div>
-<div class="page"><h2>تحبيه بجد ولا كسوف؟</h2><button onclick="go(7)">بجد</button></div>
-<div class="page"><h2>يعني قلبك معاه؟ 💗</h2><button onclick="go(8)">أيوه</button></div>
-
-<div class="page">
-<h2>آخر سؤال بقى…</h2>
-<button onclick="playMusic(); go(9)">اه دودي قلبي ❤️</button>
-<button id="no" onclick="shrink()">لا 😒</button>
+<div class="page active" id="p0">
+<h1>انتي ريماس؟ 💕</h1>
+<button onclick="next(1)">أيوه</button>
 </div>
 
-<!-- الرسالة -->
-<div class="page">
-<div class="photo-frame">
+<div class="page" id="p1">
+<h1>جاهزة لرحلة صغيرة؟ 🌸</h1>
+<button onclick="next(2)">جاهزة</button>
+</div>
+
+<div class="page" id="p2">
+<h1>وعد مش هتزهقي؟ 😌</h1>
+<button onclick="next(3)">أوعد</button>
+</div>
+
+<div class="page" id="p3">
+<h1>طب ركزي معايا شوية 👀</h1>
+<button onclick="next(4)">تمام</button>
+</div>
+
+<div class="page" id="p4">
+<h1>انتي بتحبي سعد؟ ❤️</h1>
+<button onclick="next(5)">هااا 😳</button>
+</div>
+
+<div class="page" id="p5">
+<h1>آخر سؤال بقى…</h1>
+<button onclick="next(6)">اه دودي قلبي ❤️</button>
+</div>
+
+<div class="page" id="p6">
+<div class="photo">
 <img src="us.jpg" alt="us">
 </div>
 
 <div class="message">
-<span style="animation-delay:0s">ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري</span>
+ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري
 
-<span style="animation-delay:2s">انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني او يقول انه صح حتى لو هو صح</span>
+انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني
 
-<span style="animation-delay:4s">بحبك يا اجمل حد في الدنيا بحبك يا ست البنات و اجملهم بحبك و قلبي مش عاوز غيرك بحبك و انا مش شايف غيرك بحبك بحبك</span>
+بحبك يا اجمل حد في الدنيا و قلبي مش عاوز غيرك
 
-<span style="animation-delay:6s">ريماس بجد انا هحاول و اكمل مشواري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب</span>
-
-<span style="animation-delay:8s">
-رقَّتْ بوصفِ جمالكِ الأقوال  
-وَهَبَ الإله بكِ الجمالَ تجمُّلًا  
-كل العيون إذا برزتِ شواخص  
-ولو كنتِ في أيام يوسف  
-لقُطِّعَت دون الأكف قلوبُها  
-</span>
+ريماس بجد انا هحاول و اكمل مشواري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب
 </div>
 </div>
 
 <script>
-let pages=document.querySelectorAll('.page');
-let i=0;
-function go(n){pages[i].classList.remove('active');i=n;pages[i].classList.add('active');}
-function playMusic(){document.getElementById("music").play();}
-function shrink(){
-let no=document.getElementById('no');
-let s=parseInt(getComputedStyle(no).fontSize);
-if(s>10){no.style.fontSize=(s-4)+'px';}
+function next(n){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('p'+n).classList.add('active');
 }
-
-setInterval(()=>{
-let h=document.createElement('span');
-h.innerHTML='❤️';
-h.style.left=Math.random()*100+'vw';
-h.style.animationDuration=(5+Math.random()*4)+'s';
-document.getElementById('hearts').appendChild(h);
-setTimeout(()=>h.remove(),9000);
-},260);
 </script>
 
 </body>
