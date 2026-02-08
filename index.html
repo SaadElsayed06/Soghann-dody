@@ -14,7 +14,6 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* الصفحات */
 .page{
 display:none;
 min-height:100vh;
@@ -35,19 +34,17 @@ from{opacity:0;transform:translateY(30px);}
 to{opacity:1;transform:translateY(0);}
 }
 
-/* العناوين */
 h1{
-font-size:52px;
+font-size:48px;
 margin-bottom:30px;
 }
 
-/* الأزرار */
 button{
 background:white;
 color:#ff2f75;
 border:none;
-padding:22px 55px;
-font-size:32px;
+padding:20px 55px;
+font-size:30px;
 border-radius:50px;
 margin:15px;
 cursor:pointer;
@@ -55,53 +52,19 @@ transition:.3s;
 }
 
 button:hover{transform:scale(1.1);}
-button:active{transform:scale(.95);}
 
-/* القلوب */
-.heart{
-position:fixed;
-bottom:-40px;
-font-size:26px;
-animation:float 7s linear infinite;
-}
-@keyframes float{
-0%{transform:translateY(0);opacity:0}
-30%{opacity:1}
-100%{transform:translateY(-120vh);opacity:0}
-}
-
-/* الصورة */
 .photo-frame{
 border:6px solid white;
 border-radius:30px;
 padding:10px;
 margin-bottom:35px;
 animation:zoom 1.2s ease;
-background:rgba(255,255,255,.2);
 }
 
 .photo-frame img{
-width:300px;
+width:320px;
 border-radius:20px;
 display:block;
-}
-
-/* الرسالة */
-.message{
-background:rgba(255,255,255,.25);
-padding:45px;
-border-radius:35px;
-font-size:40px;
-line-height:2.6;
-max-width:900px;
-white-space:pre-line;
-}
-
-/* العد التنازلي */
-.countdown{
-font-size:90px;
-font-weight:bold;
-animation:pulse 1s infinite;
 }
 
 @keyframes zoom{
@@ -109,89 +72,88 @@ from{transform:scale(.6);opacity:0}
 to{transform:scale(1);opacity:1}
 }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.15)}
-100%{transform:scale(1)}
+.message{
+background:rgba(255,255,255,.25);
+padding:45px;
+border-radius:35px;
+font-size:32px;
+line-height:2.4;
+max-width:950px;
+white-space:pre-line;
+text-align:right;
 }
 
-/* تحسين الموبايل */
 @media (max-width:600px){
-h1{font-size:44px;}
-button{font-size:28px;}
-.message{font-size:34px;}
+h1{font-size:40px;}
+.message{font-size:28px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- الأغنية -->
 <audio id="music" loop>
   <source src="song.m4a" type="audio/mp4">
 </audio>
 
-<!-- الصفحات -->
+<!-- الأسئلة -->
 <div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
 
-<div class="page"><h1>ركزي معايا شوية 👀</h1><button onclick="go(2)">تمام</button></div>
+<div class="page"><h1>أهلييييين رييماااسس 🥰</h1><button onclick="go(2)">هاااي</button></div>
 
-<div class="page"><h1>جاهزة لرحلة حب؟ 🌸</h1><button onclick="go(3)">جاهزة</button></div>
+<div class="page"><h1>جاهزة تسمعي شوية كلام من القلب؟ ❤️</h1><button onclick="go(3)">جاهزة</button></div>
 
-<div class="page"><h1>وعد مش هتزهقي؟ 😌</h1><button onclick="go(4)">أوعد</button></div>
+<div class="page"><h1>انتي بتحبي سعد؟ 😳</h1><button onclick="go(4)">هاااا</button></div>
 
-<div class="page"><h1>سؤال صريح شوية…</h1><button onclick="go(5)">قولي</button></div>
+<div class="page"><h1>يعني إيه هااا؟ 😏</h1><button onclick="go(5)">بحبه</button></div>
 
-<div class="page"><h1>عمرك تخيلتي حياتك من غير سعد؟ 😳</h1><button onclick="go(6)">مستحيل</button></div>
+<div class="page"><h1>بحبيه بجد؟ 💗</h1><button onclick="go(6)">اه دودي قلبي ❤️</button></div>
 
-<div class="page"><h1>لو زعلنا يوم؟ 🥺</h1><button onclick="go(7)">نصالح بعض</button></div>
-
-<div class="page"><h1>وعد مهما يحصل؟ 🤍</h1><button onclick="go(8)">وعد</button></div>
-
-<div class="page"><h1>قلبك اختار خلاص؟ 💗</h1><button onclick="go(9)">اختار</button></div>
-
-<div class="page">
-<h1>اختار مين؟ 😏</h1>
-<button onclick="go(10)">سعد ❤️</button>
-<button id="noBtn" onclick="run()">لا 🙄</button>
-</div>
-
-<!-- العد التنازلي -->
-<div class="page">
-<h1>استعدي…</h1>
-<div class="countdown" id="count">3</div>
-</div>
-
-<!-- النهاية -->
+<!-- الرسالة -->
 <div class="page">
 
 <div class="photo-frame">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="us">
+<img src="us.jpg" alt="us">
 </div>
 
 <div class="message">
-عارف ان في عيد حب  
-بس انا مش هحبك في يوم واحد  
+ماسه عارف ان في عيد حب و ما حب  
+بس انا مش هحبك في يوم واحد بس  
+انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه  
+هفضل احبك ماسه انتي حياتي و عمري  
 
-انا بحبك كل يوم  
-كل سنة  
-كل شهر  
-كل ساعة  
-كل ثانية  
+انا بجد يا ريماس بعشقك و بموت فيكي  
+عارف ممكن ساعات انا بعمل حاجات تزعلك  
+و انت بتعمل حاجات تزعلني  
+بس الفكره و الحاجه الحلوه ال ما بينا  
+ان محدش فينا عنده استعداد يسيب التاني  
+او يقول انه صح حتى لو هو صح  
 
-ريماس انتي حياتي و عمري  
-بعشقك و بموت فيكي  
-
-ممكن نزعّل بعض  
-بس ولا واحد فينا  
-عنده استعداد يسيب التاني  
-
+و علشان كده بحب قد ايه انت بتريحيني  
+و قد ايه بتحبيني  
 بحبك يا اجمل حد في الدنيا  
-و قلبي مش عايز غيرك  
+بحبك يا ست البنات و اجملهم  
+بحبك و قلبي مش عاوز غيرك  
+بحبك و انا مش شايف غيرك  
+بحبك بحبك  
 
-وعد مني  
-افضل احبك العمر كله ❤️
+ريماس بجد  
+انا هحاول و اكمل مشواري ده  
+و ربنا ييسر امري فيه  
+و يخليني الشخص ال يكون مسلم و راجل  
+و زوج صالح  
+و اكون ليكي انتي بس يا صغنن يا رب  
+
+رقَّتْ بوصفِ جمالكِ الأقوال  
+ورأتكِ فافتَتنت بك العذَّالُ  
+وَهَبَ الإله بكِ الجمالَ تجمُّلًا  
+حتى كأنكِ للجمال جمالُ  
+كل العيون إذا برزتِ شواخص  
+كيما تراك وغضُّهن محال  
+ولو كنتِ في أيام يوسف  
+لقُطِّعَت دون الأكف قلوبُها  
 </div>
+
 </div>
 
 <script>
@@ -200,45 +162,12 @@ let i=0;
 let music=document.getElementById("music");
 music.volume=0.6;
 
-/* التنقل + تشغيل الأغنية */
 function go(n){
 music.play();
 pages[i].classList.remove('active');
 i=n;
 pages[i].classList.add('active');
 }
-
-/* زر لا يهرب */
-function run(){
-let b=document.getElementById('noBtn');
-b.style.position='absolute';
-b.style.left=Math.random()*80+'%';
-b.style.top=Math.random()*80+'%';
-}
-
-/* قلوب طايرة */
-setInterval(()=>{
-let h=document.createElement('div');
-h.className='heart';
-h.innerHTML='❤️';
-h.style.left=Math.random()*100+'vw';
-h.style.animationDuration=(5+Math.random()*4)+'s';
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),9000);
-},300);
-
-/* العد التنازلي */
-let c=3;
-setTimeout(()=>{
-let interval=setInterval(()=>{
-c--;
-document.getElementById("count").innerText=c;
-if(c===0){
-clearInterval(interval);
-go(pages.length-1);
-}
-},1000);
-},100);
 </script>
 
 </body>
