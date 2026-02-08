@@ -11,12 +11,14 @@ font-family: Arial, sans-serif;
 background:linear-gradient(135deg,#ff4d8d,#ff9bbd);
 color:white;
 text-align:center;
+overflow-x:hidden;
 }
 
+/* الصفحات */
 .page{
 display:none;
 min-height:100vh;
-padding:40px 20px;
+padding:50px 20px;
 box-sizing:border-box;
 }
 
@@ -25,111 +27,218 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+animation:fade 1s ease;
 }
 
-h1,h2{
-font-size:48px;
+@keyframes fade{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* العناوين */
+h1{
+font-size:52px;
 margin-bottom:30px;
 }
 
+/* الأزرار */
 button{
 background:white;
 color:#ff2f75;
 border:none;
-padding:18px 45px;
-font-size:30px;
+padding:22px 55px;
+font-size:32px;
 border-radius:50px;
 margin:15px;
 cursor:pointer;
+transition:.3s;
 }
 
-button:active{
-transform:scale(0.95);
+button:hover{transform:scale(1.1);}
+button:active{transform:scale(.95);}
+
+/* القلوب */
+.heart{
+position:fixed;
+bottom:-40px;
+font-size:26px;
+animation:float 7s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:0}
+30%{opacity:1}
+100%{transform:translateY(-120vh);opacity:0}
 }
 
-.message{
-background:rgba(255,255,255,0.2);
-padding:40px;
-border-radius:30px;
-font-size:40px;
-line-height:2.3;
-max-width:900px;
-white-space:pre-line;
-}
-
-.photo{
-border:8px solid white;
+/* الصورة */
+.photo-frame{
+border:6px solid white;
 border-radius:30px;
 padding:10px;
-margin-bottom:30px;
+margin-bottom:35px;
 animation:zoom 1.2s ease;
+background:rgba(255,255,255,.2);
 }
 
-.photo img{
+.photo-frame img{
 width:300px;
 border-radius:20px;
 display:block;
 }
 
+/* الرسالة */
+.message{
+background:rgba(255,255,255,.25);
+padding:45px;
+border-radius:35px;
+font-size:40px;
+line-height:2.6;
+max-width:900px;
+white-space:pre-line;
+}
+
+/* العد التنازلي */
+.countdown{
+font-size:90px;
+font-weight:bold;
+animation:pulse 1s infinite;
+}
+
 @keyframes zoom{
-from{transform:scale(0.6);opacity:0}
+from{transform:scale(.6);opacity:0}
 to{transform:scale(1);opacity:1}
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+/* تحسين الموبايل */
+@media (max-width:600px){
+h1{font-size:44px;}
+button{font-size:28px;}
+.message{font-size:34px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- الأغنية -->
+<audio id="music" loop>
+  <source src="song.m4a" type="audio/mp4">
+</audio>
+
 <!-- الصفحات -->
-<div class="page active" id="p0">
-<h1>انتي ريماس؟ 💕</h1>
-<button onclick="next(1)">أيوه</button>
+<div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
+
+<div class="page"><h1>ركزي معايا شوية 👀</h1><button onclick="go(2)">تمام</button></div>
+
+<div class="page"><h1>جاهزة لرحلة حب؟ 🌸</h1><button onclick="go(3)">جاهزة</button></div>
+
+<div class="page"><h1>وعد مش هتزهقي؟ 😌</h1><button onclick="go(4)">أوعد</button></div>
+
+<div class="page"><h1>سؤال صريح شوية…</h1><button onclick="go(5)">قولي</button></div>
+
+<div class="page"><h1>عمرك تخيلتي حياتك من غير سعد؟ 😳</h1><button onclick="go(6)">مستحيل</button></div>
+
+<div class="page"><h1>لو زعلنا يوم؟ 🥺</h1><button onclick="go(7)">نصالح بعض</button></div>
+
+<div class="page"><h1>وعد مهما يحصل؟ 🤍</h1><button onclick="go(8)">وعد</button></div>
+
+<div class="page"><h1>قلبك اختار خلاص؟ 💗</h1><button onclick="go(9)">اختار</button></div>
+
+<div class="page">
+<h1>اختار مين؟ 😏</h1>
+<button onclick="go(10)">سعد ❤️</button>
+<button id="noBtn" onclick="run()">لا 🙄</button>
 </div>
 
-<div class="page" id="p1">
-<h1>جاهزة لرحلة صغيرة؟ 🌸</h1>
-<button onclick="next(2)">جاهزة</button>
+<!-- العد التنازلي -->
+<div class="page">
+<h1>استعدي…</h1>
+<div class="countdown" id="count">3</div>
 </div>
 
-<div class="page" id="p2">
-<h1>وعد مش هتزهقي؟ 😌</h1>
-<button onclick="next(3)">أوعد</button>
+<!-- النهاية -->
+<div class="page">
+
+<div class="photo-frame">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="us">
 </div>
 
-<div class="page" id="p3">
-<h1>طب ركزي معايا شوية 👀</h1>
-<button onclick="next(4)">تمام</button>
-</div>
-
-<div class="page" id="p4">
-<h1>انتي بتحبي سعد؟ ❤️</h1>
-<button onclick="next(5)">هااا 😳</button>
-</div>
-
-<div class="page" id="p5">
-<h1>آخر سؤال بقى…</h1>
-<button onclick="next(6)">اه دودي قلبي ❤️</button>
-</div>
-
-<div class="page" id="p6">
-<img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="us">
-  
 <div class="message">
-ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري
+عارف ان في عيد حب  
+بس انا مش هحبك في يوم واحد  
 
-انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني
+انا بحبك كل يوم  
+كل سنة  
+كل شهر  
+كل ساعة  
+كل ثانية  
 
-بحبك يا اجمل حد في الدنيا و قلبي مش عاوز غيرك
+ريماس انتي حياتي و عمري  
+بعشقك و بموت فيكي  
 
-ريماس بجد انا هحاول و اكمل مشواري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب
+ممكن نزعّل بعض  
+بس ولا واحد فينا  
+عنده استعداد يسيب التاني  
+
+بحبك يا اجمل حد في الدنيا  
+و قلبي مش عايز غيرك  
+
+وعد مني  
+افضل احبك العمر كله ❤️
 </div>
 </div>
 
 <script>
-function next(n){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById('p'+n).classList.add('active');
+let pages=document.querySelectorAll('.page');
+let i=0;
+let music=document.getElementById("music");
+music.volume=0.6;
+
+/* التنقل + تشغيل الأغنية */
+function go(n){
+music.play();
+pages[i].classList.remove('active');
+i=n;
+pages[i].classList.add('active');
 }
+
+/* زر لا يهرب */
+function run(){
+let b=document.getElementById('noBtn');
+b.style.position='absolute';
+b.style.left=Math.random()*80+'%';
+b.style.top=Math.random()*80+'%';
+}
+
+/* قلوب طايرة */
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.animationDuration=(5+Math.random()*4)+'s';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),9000);
+},300);
+
+/* العد التنازلي */
+let c=3;
+setTimeout(()=>{
+let interval=setInterval(()=>{
+c--;
+document.getElementById("count").innerText=c;
+if(c===0){
+clearInterval(interval);
+go(pages.length-1);
+}
+},1000);
+},100);
 </script>
 
 </body>
