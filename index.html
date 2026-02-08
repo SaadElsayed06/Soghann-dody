@@ -17,13 +17,19 @@ overflow-x:hidden;
 .page{
 display:none;
 min-height:100vh;
-padding:30px 15px;
+padding:40px 20px;
 animation:fade 1.2s ease;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
-.page.active{display:block;}
+.page.active{display:flex;}
 
 h1,h2{
+font-size:42px;
+margin-bottom:25px;
 animation:slide 1s ease;
 }
 
@@ -31,15 +37,15 @@ button{
 background:white;
 color:#ff2f75;
 border:none;
-padding:15px 35px;
-font-size:22px;
-border-radius:40px;
-margin:12px;
+padding:18px 45px;
+font-size:26px;
+border-radius:50px;
+margin:15px;
 cursor:pointer;
 transition:.3s;
 }
 
-button:hover{transform:scale(1.1);}
+button:hover{transform:scale(1.12);}
 
 @keyframes fade{
 from{opacity:0}
@@ -47,46 +53,78 @@ to{opacity:1}
 }
 
 @keyframes slide{
-from{transform:translateY(30px);opacity:0}
+from{transform:translateY(40px);opacity:0}
 to{transform:translateY(0);opacity:1}
 }
 
+/* القلوب */
 .hearts span{
 position:fixed;
 bottom:-40px;
-font-size:22px;
+font-size:26px;
 animation:float 7s linear infinite;
-opacity:.8;
+opacity:.85;
 }
 
 @keyframes float{
 0%{transform:translateY(0);opacity:0}
 30%{opacity:1}
-100%{transform:translateY(-110vh);opacity:0}
+100%{transform:translateY(-120vh);opacity:0}
 }
 
+/* برواز الصورة */
+.photo-frame{
+padding:12px;
+border-radius:30px;
+background:linear-gradient(45deg,#fff,#ffd6e8,#fff);
+animation:zoomIn 1.8s ease;
+box-shadow:0 0 40px rgba(255,255,255,.5);
+margin-bottom:30px;
+}
+
+.photo-frame img{
+max-width:320px;
+border-radius:22px;
+display:block;
+}
+
+/* أنيميشن الصورة */
+@keyframes zoomIn{
+from{transform:scale(.5);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+/* الرسالة */
 .message{
-background:rgba(255,255,255,.15);
-padding:30px;
-border-radius:25px;
-line-height:2.2;
-font-size:22px;
+background:rgba(255,255,255,.2);
+padding:45px;
+border-radius:35px;
+line-height:2.7;
+font-size:38px;
 white-space:pre-line;
-animation:fade 2s;
+max-width:900px;
+animation:fade 2s ease;
 }
 
-img{
-max-width:90%;
-border-radius:25px;
-margin:20px 0;
+.message span{
+display:block;
+opacity:0;
+animation:showLine 1s forwards;
+}
+
+@keyframes showLine{
+from{opacity:0; transform:translateY(25px);}
+to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
+<audio id="music" src="love.mp3" loop></audio>
 <div class="hearts" id="hearts"></div>
 
+<!-- الصفحات -->
 <div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
 <div class="page"><h1>جاهزة لرحلة صغيرة؟ 🌸</h1><button onclick="go(2)">جاهزة</button></div>
 <div class="page"><h2>وعد مش هتزهقي؟ 😌</h2><button onclick="go(3)">أوعد</button></div>
@@ -98,27 +136,32 @@ margin:20px 0;
 
 <div class="page">
 <h2>آخر سؤال بقى…</h2>
-<button id="yes" onclick="go(9)">اه دودي قلبي ❤️</button>
+<button onclick="playMusic(); go(9)">اه دودي قلبي ❤️</button>
 <button id="no" onclick="shrink()">لا 😒</button>
 </div>
 
+<!-- الرسالة -->
 <div class="page">
-<img src="us.jpg">
-<div class="message">
-ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني او يقول انه صح حتى لو هو صح و انا علشان كده بحب قد ايه انت بتريحني وقد ايه بتحبني بحبك يا اجمل حد في الدنيا بحبك يا ست البنات و اجملهم بحبك و قلبي مش عاوز غيرك بحبك و انا مش شايف غيرك بحبك بحبك
-ريماس بجد انا هحاول و اكمل مشاوري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب 
+<div class="photo-frame">
+<img src="us.jpg" alt="us">
+</div>
 
-رقَّتْ بوصفِ جمالكِ الأقوال ورأتكِ فافتَتنت بك العذَّالُ
-وَهَبَ الإله بكِ الجمالَ تجمُّلًا حتى كأنكِ للجمال جَمال
-كل العيون إذا برزتِ شواخص كيما تراك وغضُّهن محال
-وإذا الخَلِيُّ رآك عاد بمهجةٍ للوجد مخترقٌ بها ومجالُ
-كم قد سفرتِ ففي القلوب تولهٌلما رأوْكِ وفي العقول خبال
-فرَموكِ بالأبصار وهي كليلةٌ من نور وجهكِ نورهنَّ مُذال
-ربطوا الأكفَّ على ضلوع تحتهابين النواظر وللقلوب جِدال
-لو كنت في أيام يوسف لم تكنبجمالِ يوسف تُضرب الأمثال
-ولقطَّعَت دون الأكف قلوبَها شوقًا إليك مع النساء رجال
-كم قد يجور على جفونِك سُقمُهاكسرًا وتجهِد خَصرَكِ الأكفال
-عجبًا لطرْفِكِ وهو أضعف ما أرىيرنو فترْهَب فتكه الأبطالُ
+<div class="message">
+<span style="animation-delay:0s">ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري</span>
+
+<span style="animation-delay:2s">انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني او يقول انه صح حتى لو هو صح</span>
+
+<span style="animation-delay:4s">بحبك يا اجمل حد في الدنيا بحبك يا ست البنات و اجملهم بحبك و قلبي مش عاوز غيرك بحبك و انا مش شايف غيرك بحبك بحبك</span>
+
+<span style="animation-delay:6s">ريماس بجد انا هحاول و اكمل مشواري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب</span>
+
+<span style="animation-delay:8s">
+رقَّتْ بوصفِ جمالكِ الأقوال  
+وَهَبَ الإله بكِ الجمالَ تجمُّلًا  
+كل العيون إذا برزتِ شواخص  
+ولو كنتِ في أيام يوسف  
+لقُطِّعَت دون الأكف قلوبُها  
+</span>
 </div>
 </div>
 
@@ -126,11 +169,11 @@ margin:20px 0;
 let pages=document.querySelectorAll('.page');
 let i=0;
 function go(n){pages[i].classList.remove('active');i=n;pages[i].classList.add('active');}
+function playMusic(){document.getElementById("music").play();}
 function shrink(){
 let no=document.getElementById('no');
-let yes=document.getElementById('yes');
 let s=parseInt(getComputedStyle(no).fontSize);
-if(s>8){no.style.fontSize=(s-3)+'px';yes.style.fontSize=(parseInt(getComputedStyle(yes).fontSize)+3)+'px';}
+if(s>10){no.style.fontSize=(s-4)+'px';}
 }
 
 setInterval(()=>{
@@ -140,7 +183,7 @@ h.style.left=Math.random()*100+'vw';
 h.style.animationDuration=(5+Math.random()*4)+'s';
 document.getElementById('hearts').appendChild(h);
 setTimeout(()=>h.remove(),9000);
-},280);
+},260);
 </script>
 
 </body>
