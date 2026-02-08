@@ -1,147 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>ريماس ❤️ سعد</title>
-
-<style>
-body{
-margin:0;
-font-family:'Cairo',sans-serif;
-background:linear-gradient(135deg,#ff4d8d,#ff9bbd);
-color:white;
-text-align:center;
-overflow-x:hidden;
-}
-
-.page{
-display:none;
-min-height:100vh;
-padding:30px 15px;
-animation:fade 1.2s ease;
-}
-
-.page.active{display:block;}
-
-h1,h2{
-animation:slide 1s ease;
-}
-
-button{
-background:white;
-color:#ff2f75;
-border:none;
-padding:15px 35px;
-font-size:22px;
-border-radius:40px;
-margin:12px;
-cursor:pointer;
-transition:.3s;
-}
-
-button:hover{transform:scale(1.1);}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-@keyframes slide{
-from{transform:translateY(30px);opacity:0}
-to{transform:translateY(0);opacity:1}
-}
-
-.hearts span{
-position:fixed;
-bottom:-40px;
-font-size:22px;
-animation:float 7s linear infinite;
-opacity:.8;
-}
-
-@keyframes float{
-0%{transform:translateY(0);opacity:0}
-30%{opacity:1}
-100%{transform:translateY(-110vh);opacity:0}
-}
-
-.message{
-background:rgba(255,255,255,.15);
-padding:30px;
-border-radius:25px;
-line-height:2.2;
-font-size:24px;
-white-space:pre-line;
-animation:fade 2s;
-}
-
-img{
-max-width:90%;
-border-radius:25px;
-margin:20px 0;
-}
-</style>
-</head>
-
-<body>
-
-<div class="hearts" id="hearts"></div>
-
-<div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
-<div class="page"><h1>جاهزة لرحلة صغيرة؟ 🌸</h1><button onclick="go(2)">جاهزة</button></div>
-<div class="page"><h2>وعد مش هتزهقي؟ 😌</h2><button onclick="go(3)">أوعد</button></div>
-<div class="page"><h2>طب ركزي معايا شوية 👀</h2><button onclick="go(4)">تمام</button></div>
-<div class="page"><h2>في سؤال مهم أوي…</h2><button onclick="go(5)">قولي</button></div>
-<div class="page"><h2>انتي بتحبي سعد؟ ❤️</h2><button onclick="go(6)">هااا 😳</button></div>
-<div class="page"><h2>تحبيه بجد ولا كسوف؟</h2><button onclick="go(7)">بجد</button></div>
-<div class="page"><h2>يعني قلبك معاه؟ 💗</h2><button onclick="go(8)">أيوه</button></div>
-
-<div class="page">
-<h2>آخر سؤال بقى…</h2>
-<button id="yes" onclick="go(9)">اه دودي قلبي ❤️</button>
-<button id="no" onclick="shrink()">لا 😒</button>
-</div>
-
-<div class="page">
-<img src="us.jpg">
-<div class="message">
-ماسه عارف ان في عيد حب و ما حب بس انا مش هحبك في يوم واحد بس انا بحبك كل يوم كل سنه كل شهر كل ساعه كل ثانيه هفضل احبك ماسه انتي حياتي و عمري انا بجد يا ريماس بعشقك و بموت فيكي عارف ممكن ساعات انا بعمل حاجات تزعلك و انت بتعمل حاجات تزعلني بس الفكره و الحاجه الحلوه ال ما بينا ان محدش فينا عنده استعداد يسيب التاني او يقول انه صح حتى لو هو صح و انا علشان كده بحب قد ايه انت بتريحني وقد ايه بتحبني بحبك يا اجمل حد في الدنيا بحبك يا ست البنات و اجملهم بحبك و قلبي مش عاوز غيرك بحبك و انا مش شايف غيرك بحبك بحبك
-ريماس بجد انا هحاول و اكمل مشاوري ده و ربنا ييسر امري فيه و يخليني الشخص ال يكون مسلم و راجل و زوج صالح و اكون ليكي انتي بس يا صغنن ياارب 
-
-رقَّتْ بوصفِ جمالكِ الأقوال ورأتكِ فافتَتنت بك العذَّالُ
-وَهَبَ الإله بكِ الجمالَ تجمُّلًا حتى كأنكِ للجمال جَمال
-كل العيون إذا برزتِ شواخص كيما تراك وغضُّهن محال
-وإذا الخَلِيُّ رآك عاد بمهجةٍ للوجد مخترقٌ بها ومجالُ
-كم قد سفرتِ ففي القلوب تولهٌلما رأوْكِ وفي العقول خبال
-فرَموكِ بالأبصار وهي كليلةٌ من نور وجهكِ نورهنَّ مُذال
-ربطوا الأكفَّ على ضلوع تحتهابين النواظر وللقلوب جِدال
-لو كنت في أيام يوسف لم تكنبجمالِ يوسف تُضرب الأمثال
-ولقطَّعَت دون الأكف قلوبَها شوقًا إليك مع النساء رجال
-كم قد يجور على جفونِك سُقمُهاكسرًا وتجهِد خَصرَكِ الأكفال
-عجبًا لطرْفِكِ وهو أضعف ما أرىيرنو فترْهَب فتكه الأبطالُ
-</div>
-</div>
-
-<script>
-let pages=document.querySelectorAll('.page');
-let i=0;
-function go(n){pages[i].classList.remove('active');i=n;pages[i].classList.add('active');}
-function shrink(){
-let no=document.getElementById('no');
-let yes=document.getElementById('yes');
-let s=parseInt(getComputedStyle(no).fontSize);
-if(s>8){no.style.fontSize=(s-3)+'px';yes.style.fontSize=(parseInt(getComputedStyle(yes).fontSize)+3)+'px';}
-}
-
-setInterval(()=>{
-let h=document.createElement('span');
-h.innerHTML='❤️';
-h.style.left=Math.random()*100+'vw';
-h.style.animationDuration=(5+Math.random()*4)+'s';
-document.getElementById('hearts').appendChild(h);
-setTimeout(()=>h.remove(),9000);
-},280);
-</script>
-
-</body>
-</html>
