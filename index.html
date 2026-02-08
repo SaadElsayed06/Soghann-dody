@@ -14,6 +14,7 @@ text-align:center;
 overflow-x:hidden;
 }
 
+/* الصفحات */
 .page{
 display:none;
 min-height:100vh;
@@ -26,19 +27,28 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-animation:fade 1s ease;
+animation:popIn 1s ease forwards;
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
+/* أنيميشن الدخول */
+@keyframes popIn{
+from{
+opacity:0;
+transform:scale(.9) translateY(40px);
+}
+to{
+opacity:1;
+transform:scale(1) translateY(0);
+}
 }
 
+/* العناوين */
 h1{
 font-size:48px;
 margin-bottom:30px;
 }
 
+/* الأزرار */
 button{
 background:white;
 color:#ff2f75;
@@ -52,13 +62,29 @@ transition:.3s;
 }
 
 button:hover{transform:scale(1.1);}
+button:active{transform:scale(.95);}
 
+/* قلوب */
+.heart{
+position:fixed;
+bottom:-40px;
+font-size:26px;
+animation:float 7s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:0}
+30%{opacity:1}
+100%{transform:translateY(-120vh);opacity:0}
+}
+
+/* الصورة */
 .photo-frame{
 border:6px solid white;
 border-radius:30px;
 padding:10px;
 margin-bottom:35px;
-animation:zoom 1.2s ease;
+background:rgba(255,255,255,.2);
+animation:zoomPic 1.2s ease forwards;
 }
 
 .photo-frame img{
@@ -67,11 +93,12 @@ border-radius:20px;
 display:block;
 }
 
-@keyframes zoom{
+@keyframes zoomPic{
 from{transform:scale(.6);opacity:0}
 to{transform:scale(1);opacity:1}
 }
 
+/* الرسالة */
 .message{
 background:rgba(255,255,255,.25);
 padding:45px;
@@ -83,20 +110,23 @@ white-space:pre-line;
 text-align:right;
 }
 
+/* تحسين الموبايل */
 @media (max-width:600px){
 h1{font-size:40px;}
 .message{font-size:28px;}
+button{font-size:26px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- الأغنية -->
 <audio id="music" loop>
   <source src="song.m4a" type="audio/mp4">
 </audio>
 
-<!-- الأسئلة -->
+<!-- الصفحات -->
 <div class="page active"><h1>انتي ريماس؟ 💕</h1><button onclick="go(1)">أيوه</button></div>
 
 <div class="page"><h1>أهلييييين رييماااسس 🥰</h1><button onclick="go(2)">هاااي</button></div>
@@ -109,7 +139,7 @@ h1{font-size:40px;}
 
 <div class="page"><h1>بحبيه بجد؟ 💗</h1><button onclick="go(6)">اه دودي قلبي ❤️</button></div>
 
-<!-- الرسالة -->
+<!-- النهاية -->
 <div class="page">
 
 <div class="photo-frame">
@@ -162,12 +192,30 @@ let i=0;
 let music=document.getElementById("music");
 music.volume=0.6;
 
+/* التنقل + إعادة تشغيل الأنيميشن */
 function go(n){
 music.play();
 pages[i].classList.remove('active');
+
+/* إعادة تشغيل الأنيميشن */
+pages[n].style.animation='none';
+pages[n].offsetHeight;
+pages[n].style.animation=null;
+
 i=n;
 pages[i].classList.add('active');
 }
+
+/* قلوب */
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.animationDuration=(5+Math.random()*4)+'s';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),9000);
+},300);
 </script>
 
 </body>
